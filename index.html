@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Udaiyappan V – Digital Marketing Executive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: rgba(255,255,255,0.07);
+    --accent: #00d4aa;
+    --accent2: #7c6cfa;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --radius: 16px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.2rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 7rem 5% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 70% 40%, rgba(0,212,170,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 20% 80%, rgba(124,108,250,0.08) 0%, transparent 60%);
+  }
+  .grid-overlay {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.25);
+    color: var(--accent); font-size: 0.8rem; font-weight: 500;
+    padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+  h1.hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-name .accent { color: var(--accent); }
+
+  .hero-tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-desc {
+    font-size: 1rem; color: var(--muted);
+    max-width: 520px; line-height: 1.8;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--accent); color: #0a0a0f;
+    font-weight: 600; font-size: 0.9rem;
+    padding: 0.85rem 1.8rem; border-radius: 100px;
+    text-decoration: none; transition: 0.25s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: #00efc0; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    font-weight: 500; font-size: 0.9rem;
+    padding: 0.85rem 1.8rem; border-radius: 100px;
+    text-decoration: none; transition: 0.25s;
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 5%; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--accent); margin-bottom: 0.6rem;
+  }
+  h2.section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; letter-spacing: -0.02em;
+    margin-bottom: 3rem; color: var(--text);
+  }
+  h2.section-title span { color: var(--accent); }
+
+  /* ABOUT */
+  #about { background: var(--surface); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 1.05rem; }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem; font-weight: 800;
+    color: var(--accent);
+  }
+  .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .skill-group:hover { border-color: rgba(0,212,170,0.3); transform: translateY(-4px); }
+  .skill-group-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(0,212,170,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1rem;
+  }
+  .skill-group h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    margin-bottom: 1rem; color: var(--text);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--muted); font-size: 0.78rem;
+    padding: 4px 12px; border-radius: 100px;
+    transition: 0.2s;
+  }
+  .skill-tag:hover { background: rgba(0,212,170,0.1); color: var(--accent); border-color: rgba(0,212,170,0.3); }
+
+  /* PROJECTS */
+  #projects { background: var(--surface); }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    max-width: 800px;
+    transition: border-color 0.25s;
+  }
+  .project-card:hover { border-color: rgba(124,108,250,0.4); }
+  .project-meta {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 1.2rem;
+  }
+  .project-num {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(124,108,250,0.15);
+    color: var(--accent2);
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .project-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem; font-weight: 700; color: var(--text);
+  }
+  .project-card ul {
+    list-style: none; margin-top: 1rem;
+  }
+  .project-card ul li {
+    color: var(--muted); font-size: 0.95rem;
+    padding: 0.4rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .project-card ul li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent); font-size: 0.8rem;
+  }
+
+  /* CERTIFICATIONS + ACHIEVEMENTS */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    transition: 0.25s;
+  }
+  .cert-card:hover { border-color: rgba(0,212,170,0.3); transform: translateY(-3px); }
+  .cert-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    border-radius: 12px;
+    background: rgba(0,212,170,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .cert-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .cert-card p { font-size: 0.82rem; color: var(--muted); }
+  .cert-score {
+    display: inline-block; margin-top: 8px;
+    background: rgba(0,212,170,0.1); color: var(--accent);
+    font-size: 0.78rem; font-weight: 600;
+    padding: 3px 10px; border-radius: 100px;
+  }
+
+  /* EDUCATION */
+  #education { background: var(--surface); }
+  .edu-list { max-width: 700px; }
+  .edu-item {
+    display: flex; gap: 1.5rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-year {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem; font-weight: 700;
+    color: var(--accent); min-width: 60px;
+    padding-top: 4px;
+  }
+  .edu-details h3 { font-size: 1.05rem; font-weight: 600; color: var(--text); }
+  .edu-details p { font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
+
+  /* CONTACT */
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+  .contact-info h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem; border-radius: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    margin-bottom: 1rem; text-decoration: none; color: var(--text);
+    transition: 0.25s;
+  }
+  .contact-item:hover { border-color: rgba(0,212,170,0.3); }
+  .contact-item-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(0,212,170,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .contact-item span { font-size: 0.9rem; }
+  .contact-form-side {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem;
+  }
+  .contact-form-side h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
+  .form-group input, .form-group textarea {
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); border-radius: 10px;
+    color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; padding: 0.8rem 1rem;
+    transition: border-color 0.2s; outline: none; resize: vertical;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: rgba(0,212,170,0.4); }
+  .form-group textarea { min-height: 100px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2.5rem 5%;
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 0.85rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg); padding: 1.5rem 5%; border-bottom: 1px solid var(--border); gap: 1.2rem; }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">UV.</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Available for Opportunities</div>
+    <h1 class="hero-name">Udaiyappan<br><span class="accent">V.</span></h1>
+    <p class="hero-tagline">Turning clicks into customers &amp; content into growth.</p>
+    <p class="hero-desc">Digital Marketing Executive — specializing in SEO, social media strategy, and data-driven campaigns that build brand visibility and organic reach.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Who I <span>Am</span></h2>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm a motivated BBA graduate with hands-on experience in digital marketing, passionate about helping brands grow their online presence.</p>
+      <p>My expertise lies in SEO strategy, social media campaigns, and creating content that resonates with target audiences. I believe in data-driven decisions — every campaign I work on is backed by research and analytics.</p>
+      <p>Based in Pudukkottai, Tamil Nadu, I'm eager to bring fresh ideas and digital-first thinking to a dynamic team.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">BBA</div>
+        <div class="stat-label">Graduate 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">SEO</div>
+        <div class="stat-label">Core Specialty</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">🏆</div>
+        <div class="stat-label">State-Level Award</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-label">What I Know</div>
+    <h2 class="section-title">My <span>Skill Set</span></h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">📈</div>
+      <h3>Digital Marketing Tools</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Google Ads</span>
+        <span class="skill-tag">Meta Ads Manager</span>
+        <span class="skill-tag">Google Analytics</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">🔍</div>
+      <h3>Search Engine Optimization</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">On-page SEO</span>
+        <span class="skill-tag">Off-page SEO</span>
+        <span class="skill-tag">Keyword Research</span>
+        <span class="skill-tag">Link Building</span>
+        <span class="skill-tag">Website Audit</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">📱</div>
+      <h3>Social Media Marketing</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Facebook</span>
+        <span class="skill-tag">Instagram</span>
+        <span class="skill-tag">LinkedIn</span>
+        <span class="skill-tag">YouTube</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">✏️</div>
+      <h3>Content & Design</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Copywriting</span>
+        <span class="skill-tag">Hashtag Strategy</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">💻</div>
+      <h3>Technical Skills</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">MS Office</span>
+        <span class="skill-tag">HTML Basics</span>
+        <span class="skill-tag">Keyword Planner</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-label">Work</div>
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+  </div>
+  <div class="project-card reveal">
+    <div class="project-meta">
+      <div class="project-num">01</div>
+      <h3>Competitive Analysis of OnePlus</h3>
+    </div>
+    <p style="color:var(--muted); font-size:0.95rem;">An in-depth study of consumer behavior, brand positioning, and market competitiveness for OnePlus in the Indian smartphone market.</p>
+    <ul>
+      <li>Analyzed consumer behavior patterns and brand positioning strategies</li>
+      <li>Identified key drivers of customer loyalty in the competitive smartphone space</li>
+      <li>Applied financial analysis tools including ratio and trend analysis</li>
+      <li>Delivered strategic recommendations for brand improvement</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="reveal">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications &amp; <span>Achievements</span></h2>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-card reveal">
+      <div class="cert-icon">🎓</div>
+      <div>
+        <h3>Customer Care Executive</h3>
+        <p>Telecom Sector Skill Council</p>
+        <span class="cert-score">Score: 81.18%</span>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-icon">📊</div>
+      <div>
+        <h3>Digital Marketing Certification</h3>
+        <p>Leadpro Infotech</p>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-icon">🏆</div>
+      <div>
+        <h3>Conquest '22 – Best Team</h3>
+        <p>State Level Management Meet</p>
+        <span class="cert-score">State Level Recognition</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-label">Background</div>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-list reveal">
+    <div class="edu-item">
+      <div class="edu-year">2025</div>
+      <div class="edu-details">
+        <h3>Bachelor of Business Administration (BBA)</h3>
+        <p>National College, Trichy</p>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2022</div>
+      <div class="edu-details">
+        <h3>Higher Secondary Certificate (HSC)</h3>
+        <p>Tamil Nadu State Board</p>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2020</div>
+      <div class="edu-details">
+        <h3>Secondary School Leaving Certificate (SSLC)</h3>
+        <p>Tamil Nadu State Board</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--surface);">
+  <div class="reveal">
+    <div class="section-label">Let's Talk</div>
+    <h2 class="section-title">Get in <span>Touch</span></h2>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-info reveal">
+      <h3>Open to opportunities</h3>
+      <p style="color:var(--muted); margin-bottom:1.5rem; font-size:0.95rem;">Whether you have a role, a project, or just want to talk digital marketing — I'd love to hear from you.</p>
+      <a href="tel:9751221793" class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <span>+91 9751221793</span>
+      </a>
+      <a href="mailto:udaiyappan07@gmail.com" class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <span>udaiyappan07@gmail.com</span>
+      </a>
+      <div class="contact-item" style="cursor:default;">
+        <div class="contact-item-icon">📍</div>
+        <span>Pudukkottai, Tamil Nadu</span>
+      </div>
+    </div>
+    <div class="contact-form-side reveal">
+      <h3>Send a message</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="John Doe">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="john@example.com">
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Hi Udaiyappan, I'd like to discuss..."></textarea>
+      </div>
+      <a href="mailto:udaiyappan07@gmail.com" class="btn-primary" style="display:inline-block;text-align:center;width:100%;">Send via Email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p style="font-family:'Syne',sans-serif; font-weight:700; font-size:1rem; color:var(--accent); margin-bottom:8px;">Udaiyappan V.</p>
+  <p>Digital Marketing Executive &nbsp;·&nbsp; Pudukkottai, Tamil Nadu</p>
+  <p style="margin-top:8px; font-size:0.78rem;">© 2025 Udaiyappan V. All rights reserved.</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
